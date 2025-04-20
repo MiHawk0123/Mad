@@ -1,80 +1,74 @@
 # Mad
-Pr1
-MainActivity.java
+XML (activity_main.xml):
 
-import android.app.Activity;
+
+<LinearLayout 
+
+ xmlns:android="http://schemas.android.com/apk/res/android"
+
+ android:orientation="vertical"
+
+ android:layout_width="match_parent"
+
+ android:layout_height="match_parent"
+
+ android:gravity="center"
+
+ android:padding="16dp">
+
+ <ToggleButton
+
+ android:id="@+id/toggleButton"
+
+ android:layout_width="wrap_content"
+
+ android:layout_height="wrap_content"
+
+ android:textOn="Bluetooth ON"
+
+ android:textOff="Bluetooth OFF"/>
+
+</LinearLayout>
+
+Java (MainActivity.java):
+
+-------------------------
+
+package com.example.bluetooth;
 
 import android.bluetooth.BluetoothAdapter;
 
 import android.os.Bundle;
 
-import android.view.View;
-
 import android.widget.ToggleButton;
 
-public class MainActivity extends Activity {
+import androidx.appcompat.app.AppCompatActivity;
 
-private BluetoothAdapter bluetoothAdapter;
+public class MainActivity extends AppCompatActivity {
 
-private ToggleButton toggleButton;
+ ToggleButton toggleButton;
 
-@Override
+ BluetoothAdapter bluetoothAdapter;
 
-protected void onCreate(Bundle savedInstanceState) {
+ @Override
 
-super.onCreate(savedInstanceState);
+ protected void onCreate(Bundle savedInstanceState) {
 
-setContentView(R.layout.activity_main);
+ super.onCreate(savedInstanceState);
 
-bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+ setContentView(R.layout.activity_main);
 
-toggleButton = findViewById(R.id.toggle_button);
+ toggleButton = findViewById(R.id.toggleButton);
 
-toggleButton.setOnCheckedChangeListener((buttonView, isChecked) -> {
+ bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
-if (isChecked) {
+ toggleButton.setOnCheckedChangeListener((buttonView, isChecked) -> {
 
-bluetoothAdapter.enable();
+ if (isChecked) bluetoothAdapter.enable();
 
-toggleButton.setText("Bluetooth is On");
+ else bluetoothAdapter.disable();
 
-} else {
+ });
 
-bluetoothAdapter.disable();
+ }
 
-toggleButton.setText("Bluetooth is Off");
-
-}
-
-});
-
-}
-
-}
-
-activity_main.xml
-
-<?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
-android:layout_width="match_parent"
-
-android:layout_height="match_parent"
-
-android:orientation="vertical">
-
-<ToggleButton
-
-android:id="@+id/toggle_button"
-
-android:layout_width="wrap_content"
-
-android:layout_height="wrap_content"
-android:text="Bluetooth is Off"
-
-android:textSize="24sp"
-
-android:checked="false" />
-
-</LinearLayout>
