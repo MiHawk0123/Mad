@@ -1,4 +1,4 @@
-#7
+#7(Display Progress Bar)
 XML (activity_main.xml):
 
 ------------------------
