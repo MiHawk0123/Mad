@@ -1,79 +1,29 @@
 #6
-MainActivity.java
+XML (activity_main.xml):
 
-import android.os.Bundle;
+------------------------
 
-import android.widget.TextView;
+<LinearLayout 
 
-import androidx.appcompat.app.AppCompatActivity;
+ xmlns:android="http://schemas.android.com/apk/res/android"
 
-public class MainActivity extends AppCompatActivity {
+ android:orientation="vertical"
 
-private TextView nameTextView, ageTextView, mobileNumberTextView;
+ android:layout_width="match_parent"
 
-@Override
+ android:layout_height="match_parent"
 
-protected void onCreate(Bundle savedInstanceState) {
+ android:padding="16dp">
 
-super.onCreate(savedInstanceState);
+ <EditText android:layout_width="match_parent"
 
-setContentView(R.layout.activity_main);
+ android:layout_height="wrap_content" android:hint="Name" />
 
-nameTextView = findViewById(R.id.name_text_view);
+ <EditText android:layout_width="match_parent"
+ android:layout_height="wrap_content" android:hint="Age" android:inputType="number" />
 
-ageTextView = findViewById(R.id.age_text_view);
+ <EditText android:layout_width="match_parent"
 
-mobileNumberTextView = findViewById(R.id.mobile_number_text_view);
-
-nameTextView.setText("Name: John Doe");
-
-ageTextView.setText("Age: 25");
-
-mobileNumberTextView.setText("Mobile Number: 1234567890");
-
-}
-
-}
-activity_main.xml
-
-<?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
-android:layout_width="match_parent"
-
-android:layout_height="match_parent"
-
-android:orientation="vertical">
-
-<TextView
-
-android:id="@+id/name_text_view"
-
-android:layout_width="match_parent"
-
-android:layout_height="wrap_content"
-
-android:textSize="24sp" />
-
-<TextView
-
-android:id="@+id/age_text_view"
-
-android:layout_width="match_parent"
-
-android:layout_height="wrap_content"
-
-android:textSize="24sp" />
-
-<TextView
-
-android:id="@+id/mobile_number_text_view"
-
-android:layout_width="match_parent"
-
-android:layout_height="wrap_content"
-
-android:textSize="24sp" />
+ android:layout_height="wrap_content" android:hint="Mobile Number" android:inputType="phone" />
 
 </LinearLayout>
