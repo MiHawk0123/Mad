@@ -1,126 +1,85 @@
 #pr 5 
-MainActivity.java
+XML (activity_main.xml):
+
+------------------------
+
+<LinearLayout 
+
+ xmlns:android="http://schemas.android.com/apk/res/android"
+
+ android:orientation="vertical"
+
+ android:layout_width="match_parent"
+
+ android:layout_height="match_parent"
+
+ android:padding="16dp"
+
+ android:gravity="center">
+
+ <EditText android:id="@+id/etUser" android:layout_width="match_parent"
+
+ android:layout_height="wrap_content" android:hint="Username" />
+
+ <EditText android:id="@+id/etPass" android:layout_width="match_parent"
+android:layout_height="wrap_content" android:hint="Password" android:inputType="textPassword" />
+
+ <Button android:id="@+id/btnSubmit" android:layout_width="wrap_content"
+
+ android:layout_height="wrap_content" android:text="Submit" />
+
+ <TextView android:id="@+id/tvDisplay" android:layout_width="wrap_content"
+
+ android:layout_height="wrap_content" android:textSize="16sp" />
+
+</LinearLayout>
+
+Java (MainActivity.java):
+
+-------------------------
+
+package com.example.acceptuserpass;
 
 import android.os.Bundle;
 
-import android.view.View;
-
-import android.widget.Button;
-
-import android.widget.EditText;
-
-import android.widget.TextView;
-
-import android.widget.Toast;
+import android.widget.*;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-private EditText usernameEditText, passwordEditText;
-private TextView usernameTextView, passwordTextView;
+ EditText etUser, etPass;
 
-private Button loginButton;
+ Button btnSubmit;
 
-@Override
+ TextView tvDisplay;
 
-protected void onCreate(Bundle savedInstanceState) {
+ @Override
 
-super.onCreate(savedInstanceState);
+ protected void onCreate(Bundle savedInstanceState) {
 
-setContentView(R.layout.activity_main);
+ super.onCreate(savedInstanceState);
 
-usernameEditText = findViewById(R.id.username_edit_text);
+ setContentView(R.layout.activity_main);
 
-passwordEditText = findViewById(R.id.password_edit_text);
+ etUser = findViewById(R.id.etUser);
 
-usernameTextView = findViewById(R.id.username_text_view);
+ etPass = findViewById(R.id.etPass);
 
-passwordTextView = findViewById(R.id.password_text_view);
+ btnSubmit = findViewById(R.id.btnSubmit);
 
-loginButton = findViewById(R.id.login_button);
+ tvDisplay = findViewById(R.id.tvDisplay);
 
-usernameTextView.setText("Username:");
+ btnSubmit.setOnClickListener(v -> {
 
-passwordTextView.setText("Password:");
+ String user = etUser.getText().toString();
 
-loginButton.setOnClickListener(new View.OnClickListener() {
+ String pass = etPass.getText().toString();
 
-@Override
+ tvDisplay.setText("Username: " + user + "\nPassword: " + pass);
 
-public void onClick(View v) {
+ });
 
-String username = usernameEditText.getText().toString();
-
-String password = passwordEditText.getText().toString();
-
-// Login logic here
-
-Toast.makeText(MainActivity.this, "Login successful!",
-
-Toast.LENGTH_SHORT).show();
+ }
 
 }
-
-});
-
-}
-
-}
-
-activity_main.xml
-
-<?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
-android:layout_width="match_parent"
-
-android:layout_height="match_parent"
-
-android:orientation="vertical">
-
-<TextView
-
-android:id="@+id/username_text_view"
-
-android:layout_width="match_parent"
-
-android:layout_height="wrap_content" />
-
-<EditText
-
-android:id="@+id/username_edit_text"
-
-android:layout_width="match_parent"
-
-android:layout_height="wrap_content" />
-<TextView
-
-android:id="@+id/password_text_view"
-
-android:layout_width="match_parent"
-
-android:layout_height="wrap_content" />
-
-<EditText
-
-android:id="@+id/password_edit_text"
-
-android:layout_width="match_parent"
-
-android:layout_height="wrap_content"
-
-android:inputType="textPassword" />
-
-<Button
-
-android:id="@+id/login_button"
-
-android:layout_width="match_parent"
-
-android:layout_height="wrap_content"
-
-android:text="Login" />
-
-</LinearLayout>
