@@ -1,4 +1,4 @@
-#pr2
+#pr2(login form student registration)
 XML (activity_main.xml):
 
 ------------------------
