@@ -1,95 +1,64 @@
 #pr 4
-MainActivity.java
+XML (activity_main.xml):
+
+------------------------
+
+<LinearLayout 
+
+ xmlns:android="http://schemas.android.com/apk/res/android"
+
+ android:orientation="vertical"
+
+ android:layout_width="match_parent"
+
+ android:layout_height="match_parent"
+
+ android:padding="16dp"
+
+ android:gravity="center">
+
+ <AutoCompleteTextView android:id="@+id/autoSearch" android:layout_width="match_parent"
+
+ android:layout_height="wrap_content" android:hint="Search here" />
+
+</LinearLayout>
+
+Java (MainActivity.java):
+
+-------------------------
+
+package com.example.searchengine;
 
 import android.os.Bundle;
-
-import android.view.View;
 
 import android.widget.ArrayAdapter;
 
 import android.widget.AutoCompleteTextView;
 
-import android.widget.Button;
-
-import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-private AutoCompleteTextView searchEditText;
+ AutoCompleteTextView autoSearch;
 
-private Button searchButton;
+ String[] searchItems = {"Google", "Yahoo", "Bing", "DuckDuckGo", "Ask"};
 
-@Override
+ @Override
 
-protected void onCreate(Bundle savedInstanceState) {
+ protected void onCreate(Bundle savedInstanceState) {
 
-super.onCreate(savedInstanceState);
+ super.onCreate(savedInstanceState);
 
-setContentView(R.layout.activity_main);
+ setContentView(R.layout.activity_main);
 
-searchEditText = findViewById(R.id.search_edit_text);
+ autoSearch = findViewById(R.id.autoSearch);
 
-searchButton = findViewById(R.id.search_button);
+ ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
 
-String[] suggestions = {"Apple", "Banana", "Cherry", "Date", "Elderberry"};
+ android.R.layout.simple_list_item_1, searchItems);
 
-ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+ autoSearch.setAdapter(adapter);
 
-android.R.layout.simple_dropdown_item_1line, suggestions);
-
-searchEditText.setAdapter(adapter);
-
-searchButton.setOnClickListener(new View.OnClickListener() {
-
-@Override
-public void onClick(View v) {
-
-String searchQuery = searchEditText.getText().toString();
-
-Toast.makeText(MainActivity.this, "Searching for: " + searchQuery,
-
-Toast.LENGTH_SHORT).show();
+ }
 
 }
-
-});
-
-}
-
-}
-
-activity_main.xml
-
-<?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
-android:layout_width="match_parent"
-
-android:layout_height="match_parent"
-
-android:orientation="vertical">
-
-<AutoCompleteTextView
-
-android:id="@+id/search_edit_text"
-
-android:layout_width="match_parent"
-
-android:layout_height="wrap_content"
-
-android:hint="Search" />
-
-<Button
-
-android:id="@+id/search_button"
-
-android:layout_width="match_parent"
-
-android:layout_height="wrap_content"
-
-android:text="Search" />
-
-</LinearLayout>
