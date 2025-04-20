@@ -1,4 +1,4 @@
-# Mad
+#pr 1(toggle bluetooth)
 XML (activity_main.xml):
 
 
