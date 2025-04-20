@@ -1,11 +1,43 @@
 #7
-MainActivity.java
+XML (activity_main.xml):
+
+------------------------
+
+<LinearLayout 
+
+ xmlns:android="http://schemas.android.com/apk/res/android"
+
+ android:orientation="vertical"
+
+ android:layout_width="match_parent"
+
+ android:layout_height="match_parent"
+
+ android:gravity="center"
+
+ android:padding="16dp">
+
+ <ProgressBar android:id="@+id/progressBar"
+
+ style="?android:attr/progressBarStyleHorizontal"
+
+ android:layout_width="match_parent"
+
+ android:layout_height="wrap_content"
+
+ android:progress="50"
+
+ android:max="100"/>
+
+</LinearLayout>
+
+Java (MainActivity.java):
+
+-------------------------
+
+package com.example.progressbar;
 
 import android.os.Bundle;
-
-import android.view.View;
-
-import android.widget.Button;
 
 import android.widget.ProgressBar;
 
@@ -13,87 +45,20 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-private ProgressBar progressBar;
+ ProgressBar progressBar;
 
-private Button startButton;
+ @Override
 
-@Override
+ protected void onCreate(Bundle savedInstanceState) {
 
-protected void onCreate(Bundle savedInstanceState) {
+ super.onCreate(savedInstanceState);
 
-super.onCreate(savedInstanceState);
-setContentView(R.layout.activity_main);
+ setContentView(R.layout.activity_main);
 
-progressBar = findViewById(R.id.progress_bar);
+ progressBar = findViewById(R.id.progressBar);
 
-startButton = findViewById(R.id.start_button);
+ progressBar.setProgress(70); // Example
 
-startButton.setOnClickListener(v -> {
-
-progressBar.setVisibility(View.VISIBLE);
-
-startButton.setEnabled(false);
-
-// Simulate some work
-
-new Thread(() -> {
-
-try {
-
-Thread.sleep(5000);
-
-} catch (InterruptedException e) {
-
-e.printStackTrace();
+ }
 
 }
-
-runOnUiThread(() -> {
-
-progressBar.setVisibility(View.GONE);
-
-startButton.setEnabled(true);
-
-});
-
-}).start();
-
-});
-
-}
-
-}
-
-activity_main.xml
-
-<?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
-android:layout_width="match_parent"
-
-android:layout_height="match_parent"
-
-android:orientation="vertical">
-
-<ProgressBar
-
-android:id="@+id/progress_bar"
-
-android:layout_width="wrap_content"
-
-android:layout_height="wrap_content"
-
-android:visibility="gone" />
-
-<Button
-
-android:id="@+id/start_button"
-
-android:layout_width="wrap_content"
-
-android:layout_height="wrap_content"
-
-android:text="Start" />
-
-</LinearLayout>
