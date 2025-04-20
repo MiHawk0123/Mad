@@ -1,4 +1,4 @@
-#6
+#6( Linear Layout with Name, Age, Mobile)
 XML (activity_main.xml):
 
 ------------------------
