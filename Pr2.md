@@ -1,119 +1,85 @@
 #pr2
-MainActivity.java
+XML (activity_main.xml):
+
+------------------------
+
+<LinearLayout 
+
+ xmlns:android="http://schemas.android.com/apk/res/android"
+ android:orientation="vertical"
+
+ android:layout_width="match_parent"
+
+ android:layout_height="match_parent"
+
+ android:padding="16dp"
+
+ android:gravity="center">
+
+ <EditText android:id="@+id/etUser" android:layout_width="match_parent"
+
+ android:layout_height="wrap_content" android:hint="Enter Username" />
+
+ <EditText android:id="@+id/etPass" android:layout_width="match_parent"
+
+ android:layout_height="wrap_content" android:hint="Enter Password" android:inputType="textPassword" />
+
+ <Button android:id="@+id/btnLogin" android:layout_width="wrap_content"
+
+ android:layout_height="wrap_content" android:text="Login" />
+
+ <TextView android:id="@+id/tvResult" android:layout_width="wrap_content"
+
+ android:layout_height="wrap_content" android:textSize="16sp" />
+
+</LinearLayout>
+
+Java (MainActivity.java):
+
+-------------------------
+
+package com.example.loginform;
 
 import android.os.Bundle;
 
-import android.view.View;
+import android.widget.*;
 
-import android.widget.Button;
-
-import android.widget.EditText;
-
-import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-private EditText emailEditText, passwordEditText;
+ EditText etUser, etPass;
 
-private Button registerButton, loginButton;
+ Button btnLogin;
 
-@Override
+ TextView tvResult;
 
-protected void onCreate(Bundle savedInstanceState) {
+ @Override
 
-super.onCreate(savedInstanceState);
+ protected void onCreate(Bundle savedInstanceState) {
 
-setContentView(R.layout.activity_main);
+ super.onCreate(savedInstanceState);
 
-emailEditText = findViewById(R.id.email_edit_text);
+ setContentView(R.layout.activity_main);
 
-passwordEditText = findViewById(R.id.password_edit_text);
+ etUser = findViewById(R.id.etUser);
 
-registerButton = findViewById(R.id.register_button);
+ etPass = findViewById(R.id.etPass);
 
-loginButton = findViewById(R.id.login_button);
+ btnLogin = findViewById(R.id.btnLogin);
 
-registerButton.setOnClickListener(v -> {
+ tvResult = findViewById(R.id.tvResult);
 
-String email = emailEditText.getText().toString();
+ btnLogin.setOnClickListener(v -> {
 
-String password = passwordEditText.getText().toString();
+ String user = etUser.getText().toString();
 
-// Register student logic here
+ String pass = etPass.getText().toString();
 
-Toast.makeText(this, "Student registered successfully!",
+ tvResult.setText("Username: " + user + "\nPassword: " + pass);
 
-Toast.LENGTH_SHORT).show();
+ });
 
-});
-
-loginButton.setOnClickListener(v -> {
-
-String email = emailEditText.getText().toString();
-
-String password = passwordEditText.getText().toString();
-
-// Login student logic here
-
-Toast.makeText(this, "Student logged in successfully!", Toast.LENGTH_SHORT).show();
-
-});
+ }
 
 }
-}
-
-activity_main.xml
-
-<?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
-android:layout_width="match_parent"
-
-android:layout_height="match_parent"
-
-android:orientation="vertical">
-
-<EditText
-
-android:id="@+id/email_edit_text"
-
-android:layout_width="match_parent"
-
-android:layout_height="wrap_content"
-
-android:hint="Email" />
-
-<EditText
-
-android:id="@+id/password_edit_text"
-
-android:layout_width="match_parent"
-
-android:layout_height="wrap_content"
-
-android:hint="Password"
-
-android:inputType="textPassword" />
-
-<Button
-
-android:id="@+id/register_button"
-
-android:layout_width="match_parent"
-
-android:layout_height="wrap_content"
-
-android:text="Register" />
-
-<Button
-
-android:id="@+id/login_button"
-
-android:layout_width="match_parent"
-
-android:layout_height="wrap_content"
-
-android:text="Login" />
-
-</LinearLayout>
