@@ -1,4 +1,4 @@
-#pr 5 
+#pr 5 (Accept Username and Password)
 XML (activity_main.xml):
 
 ------------------------
